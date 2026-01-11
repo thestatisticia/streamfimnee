@@ -40,3 +40,5 @@ typechain-types
 
 # Deployment info (may contain sensitive data)
 deployment-info.json
+
+.vercel
