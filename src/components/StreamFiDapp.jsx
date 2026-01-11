@@ -2725,102 +2725,90 @@ function StreamFiDapp({ defaultTab = 'create' }) {
               gap: '2rem',
               alignItems: 'center'
             }}>
-              <button
+              <a
                 style={{
-                  padding: '0.5rem 1rem',
-                  background: activeTab === 'create' ? '#6366f1' : 'transparent',
-                  color: activeTab === 'create' ? 'white' : '#a8b3d0',
-                  border: 'none',
-                  borderRadius: '6px',
+                  color: activeTab === 'create' ? '#6366f1' : '#a8b3d0',
+                  textDecoration: activeTab === 'create' ? 'underline' : 'none',
                   cursor: 'pointer',
                   fontSize: '1rem',
                   fontWeight: '500',
-                  transition: 'all 0.2s'
+                  transition: 'all 0.2s',
+                  padding: '0.25rem 0'
                 }}
                 onClick={() => handleTabChange('create')}
               >
-                Create Stream
-              </button>
-              <button
+                Create
+              </a>
+              <a
                 style={{
-                  padding: '0.5rem 1rem',
-                  background: activeTab === 'my-streams' ? '#6366f1' : 'transparent',
-                  color: activeTab === 'my-streams' ? 'white' : '#a8b3d0',
-                  border: 'none',
-                  borderRadius: '6px',
+                  color: activeTab === 'my-streams' ? '#6366f1' : '#a8b3d0',
+                  textDecoration: activeTab === 'my-streams' ? 'underline' : 'none',
                   cursor: 'pointer',
                   fontSize: '1rem',
                   fontWeight: '500',
-                  transition: 'all 0.2s'
+                  transition: 'all 0.2s',
+                  padding: '0.25rem 0'
                 }}
                 onClick={() => handleTabChange('my-streams')}
               >
                 My Streams
-              </button>
-              <button
+              </a>
+              <a
                 style={{
-                  padding: '0.5rem 1rem',
-                  background: activeTab === 'claim' ? '#6366f1' : 'transparent',
-                  color: activeTab === 'claim' ? 'white' : '#a8b3d0',
-                  border: 'none',
-                  borderRadius: '6px',
+                  color: activeTab === 'claim' ? '#6366f1' : '#a8b3d0',
+                  textDecoration: activeTab === 'claim' ? 'underline' : 'none',
                   cursor: 'pointer',
                   fontSize: '1rem',
                   fontWeight: '500',
-                  transition: 'all 0.2s'
+                  transition: 'all 0.2s',
+                  padding: '0.25rem 0'
                 }}
                 onClick={() => handleTabChange('claim')}
               >
                 Claim
-              </button>
-              <button
+              </a>
+              <a
                 style={{
-                  padding: '0.5rem 1rem',
-                  background: activeTab === 'analytics' ? '#6366f1' : 'transparent',
-                  color: activeTab === 'analytics' ? 'white' : '#a8b3d0',
-                  border: 'none',
-                  borderRadius: '6px',
+                  color: activeTab === 'analytics' ? '#6366f1' : '#a8b3d0',
+                  textDecoration: activeTab === 'analytics' ? 'underline' : 'none',
                   cursor: 'pointer',
                   fontSize: '1rem',
                   fontWeight: '500',
-                  transition: 'all 0.2s'
+                  transition: 'all 0.2s',
+                  padding: '0.25rem 0'
                 }}
                 onClick={() => handleTabChange('analytics')}
               >
                 Analytics
-              </button>
-              <button
+              </a>
+              <a
                 style={{
-                  padding: '0.5rem 1rem',
-                  background: activeTab === 'buy-sell' ? '#6366f1' : 'transparent',
-                  color: activeTab === 'buy-sell' ? 'white' : '#a8b3d0',
-                  border: 'none',
-                  borderRadius: '6px',
+                  color: activeTab === 'buy-sell' ? '#6366f1' : '#a8b3d0',
+                  textDecoration: activeTab === 'buy-sell' ? 'underline' : 'none',
                   cursor: 'pointer',
                   fontSize: '1rem',
                   fontWeight: '500',
-                  transition: 'all 0.2s'
+                  transition: 'all 0.2s',
+                  padding: '0.25rem 0'
                 }}
                 onClick={() => handleTabChange('buy-sell')}
               >
                 Buy/Sell
-              </button>
-              <button
+              </a>
+              <a
                 style={{
-                  padding: '0.5rem 1rem',
-                  background: activeTab === 'admin' ? '#6366f1' : 'transparent',
-                  color: activeTab === 'admin' ? 'white' : '#a8b3d0',
-                  border: 'none',
-                  borderRadius: '6px',
+                  color: activeTab === 'admin' ? '#6366f1' : '#a8b3d0',
+                  textDecoration: activeTab === 'admin' ? 'underline' : 'none',
                   cursor: 'pointer',
                   fontSize: '1rem',
                   fontWeight: '500',
-                  transition: 'all 0.2s'
+                  transition: 'all 0.2s',
+                  padding: '0.25rem 0'
                 }}
                 onClick={() => handleTabChange('admin')}
               >
                 Admin
-              </button>
+              </a>
             </nav>
           )}
           
@@ -2943,22 +2931,23 @@ function StreamFiDapp({ defaultTab = 'create' }) {
               </div>
             )}
 
-            <form onSubmit={handleCreateStream} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
-              <div style={{ 
-                background: '#1e293b',
-                padding: '1.5rem',
-                borderRadius: '8px',
-                border: '1px solid #334155'
-              }}>
-                <label style={{ 
-                  color: 'white',
-                  marginBottom: '0.5rem',
-                  display: 'block',
-                  fontSize: '0.9rem',
-                  fontWeight: '500'
+            <form onSubmit={handleCreateStream} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+                <div style={{ 
+                  background: '#1e293b',
+                  padding: '1.5rem',
+                  borderRadius: '8px',
+                  border: '1px solid #334155'
                 }}>
-                  Default Hourly Rate (MNEE)
-                </label>
+                  <label style={{ 
+                    color: 'white',
+                    marginBottom: '0.5rem',
+                    display: 'block',
+                    fontSize: '0.9rem',
+                    fontWeight: '500'
+                  }}>
+                    Default Hourly Rate (MNEE)
+                  </label>
                 <input
                   type="number"
                   value={hourlyRate}
@@ -3040,12 +3029,13 @@ function StreamFiDapp({ defaultTab = 'create' }) {
                 )}
               </div>
 
+              </div>
+
               <div style={{ 
                 background: '#1e293b',
                 padding: '1.5rem',
                 borderRadius: '8px',
-                border: '1px solid #334155',
-                gridColumn: '1 / -1'
+                border: '1px solid #334155'
               }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                   <h3 style={{ color: 'white', margin: 0 }}>Recipients</h3>
@@ -3489,56 +3479,91 @@ function StreamFiDapp({ defaultTab = 'create' }) {
                 </div>
               )}
 
-              <button 
-                type="submit" 
-                disabled={loading} 
-                style={{
-                  width: '100%',
-                  background: loading 
-                    ? 'var(--bg-input)' 
-                    : 'linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%)',
-                  color: loading ? 'var(--text-muted)' : 'white',
-                  padding: '1.5rem',
-                  borderRadius: 'var(--radius-lg)',
-                  fontSize: '1.3rem',
-                  fontWeight: '700',
-                  marginTop: '1rem',
-                  transition: 'all 0.3s ease',
-                  boxShadow: loading ? 'none' : 'var(--shadow-md)',
-                  fontFamily: 'var(--font-display)',
-                  letterSpacing: '0.02em',
-                  border: 'none',
-                  cursor: loading ? 'not-allowed' : 'pointer',
+              {/* Submit Button - Below Preview */}
+              {streamPreview && streamPreview.totalAmount > 0 && (
+                <div style={{
+                  marginTop: '2rem',
                   display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '0.75rem'
-                }}
-                onMouseEnter={(e) => {
-                  if (!loading) {
-                    e.target.style.transform = 'translateY(-3px)';
-                    e.target.style.boxShadow = 'var(--shadow-lg), var(--shadow-glow)';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (!loading) {
-                    e.target.style.transform = 'translateY(0)';
-                    e.target.style.boxShadow = 'var(--shadow-md)';
-                  }
-                }}
-              >
-                {loading ? (
-                  <>
-                    <span style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }}>⏳</span>
-                    Creating Stream...
-                  </>
-                ) : (
-                  <>
-                    <span>✨</span>
-                    Create Stream
-                  </>
-                )}
-              </button>
+                  justifyContent: 'center'
+                }}>
+                  <button 
+                    type="submit" 
+                    disabled={loading} 
+                    style={{
+                      background: loading 
+                        ? '#334155' 
+                        : '#6366f1',
+                      color: loading ? '#a8b3d0' : 'white',
+                      padding: '0.75rem 1.5rem',
+                      borderRadius: '6px',
+                      fontSize: '1rem',
+                      fontWeight: '500',
+                      border: 'none',
+                      cursor: loading ? 'not-allowed' : 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.5rem',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    {loading ? (
+                      <>
+                        <span style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }}>⏳</span>
+                        Creating Stream...
+                      </>
+                    ) : (
+                      <>
+                        <span>✨</span>
+                        Create Stream
+                      </>
+                    )}
+                  </button>
+                </div>
+              )}
+
+              {/* Submit Button Container - When no preview */}
+              {(!streamPreview || streamPreview.totalAmount <= 0) && (
+                <div style={{
+                  marginTop: '2rem',
+                  display: 'flex',
+                  justifyContent: 'center'
+                }}>
+                  <button 
+                    type="submit" 
+                    disabled={loading} 
+                    style={{
+                      background: loading 
+                        ? '#334155' 
+                        : '#6366f1',
+                      color: loading ? '#a8b3d0' : 'white',
+                      padding: '0.75rem 1.5rem',
+                      borderRadius: '6px',
+                      fontSize: '1rem',
+                      fontWeight: '500',
+                      border: 'none',
+                      cursor: loading ? 'not-allowed' : 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.5rem',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    {loading ? (
+                      <>
+                        <span style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }}>⏳</span>
+                        Creating Stream...
+                      </>
+                    ) : (
+                      <>
+                        <span>✨</span>
+                        Create Stream
+                      </>
+                    )}
+                  </button>
+                </div>
+              )}
             </form>
           </div>
         )}
