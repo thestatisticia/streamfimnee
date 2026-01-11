@@ -49,7 +49,7 @@ npx hardhat verify --network ethereum 0x65fEEd327e7d9a84df26446c48a46B42853cD074
 npx hardhat verify --network ethereum 0x69c29f93eBc486e98E66d901bA2C88B8FD5cBc67 "0x8ccedbAe4916b79da7F3F612EfB2EB93A2bFD6cF" "0x12214E5538915d17394f2d2F0c3733e9a32e61c1" "0x12214E5538915d17394f2d2F0c3733e9a32e61c1"
 ```
 
-## 🌐 Network Configuration
+## 🌐 Network configuration
 
 - **RPC URL**: https://eth.llamarpc.com
 - **Chain ID**: 1 (Ethereum Mainnet)

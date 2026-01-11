@@ -114,7 +114,7 @@ my-project/
 └── hardhat.config.js              # Hardhat configuration
 ```
 
-## Development
+## Development 
 
 ```bash
 # Compile contracts
