@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { ethers } from 'ethers';
 import { useToken } from '../hooks/useToken';
 import { TOKEN_CONFIG, ERC20_ABI } from '../config/tokens';
-import './StreamingPaymentDapp.css';
+//import './StreamingPaymentDapp.css';
 import BuySellInterface from './BuySellInterface';
 import BuySellAdmin from './BuySellAdmin';
 import {
@@ -1494,39 +1494,26 @@ function StreamFiDapp({ defaultTab = 'create' }) {
     return (
       <div className="payment-dapp">
         <div className="header-nav">
-          <div className="header-unified">
+          <div className="header-unified" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem 2rem' }}>
             <div className="logo-section">
               <h1>StreamFi</h1>
             </div>
-            <div className="wallet-connection">
-              <button 
-                onClick={connectWallet} 
-                className="connect-btn-nav"
-                style={{
-                  padding: '0.75rem 1.5rem',
-                  fontSize: '1rem',
-                  fontWeight: '600',
-                  background: 'linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%)',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: 'var(--radius-md)',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  boxShadow: '0 4px 16px rgba(99, 102, 241, 0.3)',
-                  fontFamily: 'var(--font-sans)'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-2px)';
-                  e.target.style.boxShadow = '0 6px 20px rgba(99, 102, 241, 0.4)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 4px 16px rgba(99, 102, 241, 0.3)';
-                }}
-              >
-                Connect Wallet
-              </button>
-            </div>
+            <button 
+              onClick={connectWallet} 
+              style={{
+                padding: '0.75rem 1.5rem',
+                fontSize: '1rem',
+                fontWeight: '600',
+                background: '#6366f1',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                fontFamily: 'sans-serif'
+              }}
+            >
+              Connect Wallet
+            </button>
           </div>
         </div>
         <div style={{ 
@@ -1534,20 +1521,19 @@ function StreamFiDapp({ defaultTab = 'create' }) {
           margin: '0 auto', 
           padding: '0 2rem',
           textAlign: 'center',
-          minHeight: '100vh',
+          minHeight: '90vh',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
+          position: 'relative'
         }}>
-          <div>
+
+          <div style={{ position: 'relative', zIndex: 1 }}>
             <h1 style={{ 
-              fontSize: '5.5rem', 
+              fontSize: 'clamp(3rem, 8vw, 5.5rem)', 
               marginBottom: '2rem',
-              background: 'linear-gradient(135deg, #ffffff 0%, #a8b3d0 50%, #6366f1 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
+              color: '#ffffff',
               fontWeight: '800',
               letterSpacing: '-0.04em',
               lineHeight: '1.1'
@@ -1556,54 +1542,105 @@ function StreamFiDapp({ defaultTab = 'create' }) {
             </h1>
             <p style={{ 
               color: 'var(--text-secondary)', 
-              fontSize: '1.5rem', 
-              marginBottom: '2rem',
-              maxWidth: '800px',
-              margin: '0 auto 2rem',
+              fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)', 
+              marginBottom: '3rem',
+              maxWidth: '700px',
+              margin: '0 auto 3rem',
               lineHeight: '1.7',
               fontWeight: '400'
             }}>
-              Automate token distributions with transparent, secure, and customizable payment streams. Perfect for payroll, subscriptions, and recurring payments.
+              Automate token distributions with transparent, secure, and customizable payment streams. Perfect for payroll, subscriptions, and recurring payments on the blockchain.
             </p>
+            
+            {/* CTA Buttons */}
             <div style={{
               display: 'flex',
               gap: '1.5rem',
               justifyContent: 'center',
               flexWrap: 'wrap',
-              marginTop: '3rem'
+              marginBottom: '4rem'
+            }}>
+              <button 
+                onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}
+                style={{
+                  padding: '1.25rem 2.5rem',
+                  fontSize: '1.1rem',
+                  fontWeight: '600',
+                  background: 'transparent',
+                  color: '#fff',
+                  border: '2px solid #666',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontFamily: 'sans-serif'
+                }}
+              >
+                Learn More
+              </button>
+            </div>
+
+            {/* Feature highlights */}
+            <div style={{
+              display: 'flex',
+              gap: '2rem',
+              justifyContent: 'center',
+              flexWrap: 'wrap'
             }}>
               <div style={{
-                padding: '1.5rem 2rem',
-                background: 'rgba(21, 27, 51, 0.4)',
-                borderRadius: 'var(--radius-md)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
+                padding: '1rem 2rem',
+                background: '#1a1a2e',
+                borderRadius: '8px',
+                border: '1px solid #333',
                 fontSize: '0.95rem',
-                color: 'var(--text-secondary)'
+                color: '#ccc',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem'
               }}>
-                <strong style={{ color: 'var(--text-primary)', display: 'block', marginBottom: '0.5rem' }}>Secure</strong>
-                Smart contract powered
+                <div style={{
+                  width: '8px',
+                  height: '8px',
+                  borderRadius: '50%',
+                  background: '#10b981'
+                }}></div>
+                <strong style={{ color: '#fff' }}>Smart Contract Secured</strong>
               </div>
               <div style={{
-                padding: '1.5rem 2rem',
-                background: 'rgba(21, 27, 51, 0.4)',
-                borderRadius: 'var(--radius-md)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
+                padding: '1rem 2rem',
+                background: '#1a1a2e',
+                borderRadius: '8px',
+                border: '1px solid #333',
                 fontSize: '0.95rem',
-                color: 'var(--text-secondary)'
+                color: '#ccc',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem'
               }}>
-                <strong style={{ color: 'var(--text-primary)', display: 'block', marginBottom: '0.5rem' }}>Transparent</strong>
-                Real-time tracking
+                <div style={{
+                  width: '8px',
+                  height: '8px',
+                  borderRadius: '50%',
+                  background: '#6366f1'
+                }}></div>
+                <strong style={{ color: '#fff' }}>Real-time Payments</strong>
               </div>
               <div style={{
-                padding: '1.5rem 2rem',
-                background: 'rgba(21, 27, 51, 0.4)',
-                borderRadius: 'var(--radius-md)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
+                padding: '1rem 2rem',
+                background: '#1a1a2e',
+                borderRadius: '8px',
+                border: '1px solid #333',
                 fontSize: '0.95rem',
-                color: 'var(--text-secondary)'
+                color: '#ccc',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem'
               }}>
-                <strong style={{ color: 'var(--text-primary)', display: 'block', marginBottom: '0.5rem' }}>Flexible</strong>
-                Custom rates & recipients
+                <div style={{
+                  width: '8px',
+                  height: '8px',
+                  borderRadius: '50%',
+                  background: '#8b5cf6'
+                }}></div>
+                <strong style={{ color: '#fff' }}>Multi-Recipient Support</strong>
               </div>
             </div>
           </div>
@@ -1800,6 +1837,687 @@ function StreamFiDapp({ defaultTab = 'create' }) {
           </div>
         </div>
 
+        {/* How It Works Section */}
+        <div id="how-it-works" style={{
+          padding: '6rem 2rem',
+          background: 'linear-gradient(135deg, rgba(15, 20, 41, 0.8) 0%, rgba(21, 27, 51, 0.8) 100%)'
+        }}>
+          <div style={{
+            maxWidth: '1200px',
+            margin: '0 auto',
+            textAlign: 'center'
+          }}>
+            <h2 style={{
+              fontSize: '3rem',
+              marginBottom: '1rem',
+              background: 'linear-gradient(135deg, #ffffff 0%, #a8b3d0 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              fontWeight: '700',
+              letterSpacing: '-0.02em'
+            }}>
+              How It Works
+            </h2>
+            <p style={{
+              color: 'var(--text-secondary)',
+              fontSize: '1.25rem',
+              marginBottom: '4rem',
+              maxWidth: '600px',
+              margin: '0 auto 4rem',
+              lineHeight: '1.6'
+            }}>
+              Get started with StreamFi in just three simple steps
+            </p>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '3rem',
+              marginBottom: '4rem'
+            }}>
+              {/* Step 1 */}
+              <div style={{
+                background: 'linear-gradient(135deg, rgba(21, 27, 51, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                padding: '3rem 2rem',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                boxShadow: '0 4px 24px rgba(0, 0, 0, 0.2)',
+                position: 'relative',
+                textAlign: 'center'
+              }}>
+                <div style={{
+                  width: '64px',
+                  height: '64px',
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 2rem',
+                  border: '2px solid rgba(99, 102, 241, 0.3)',
+                  position: 'relative'
+                }}>
+                  <span style={{
+                    fontSize: '1.5rem',
+                    fontWeight: '700',
+                    color: '#6366f1'
+                  }}>1</span>
+                </div>
+                <h3 style={{
+                  fontSize: '1.5rem',
+                  marginBottom: '1rem',
+                  color: 'var(--text-primary)',
+                  fontWeight: '600'
+                }}>
+                  Connect Wallet
+                </h3>
+                <p style={{
+                  color: 'var(--text-secondary)',
+                  fontSize: '1rem',
+                  lineHeight: '1.6',
+                  margin: 0
+                }}>
+                  Connect your Web3 wallet to access the StreamFi platform and start creating payment streams.
+                </p>
+              </div>
+
+              {/* Step 2 */}
+              <div style={{
+                background: 'linear-gradient(135deg, rgba(21, 27, 51, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                padding: '3rem 2rem',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                boxShadow: '0 4px 24px rgba(0, 0, 0, 0.2)',
+                position: 'relative',
+                textAlign: 'center'
+              }}>
+                <div style={{
+                  width: '64px',
+                  height: '64px',
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 2rem',
+                  border: '2px solid rgba(139, 92, 246, 0.3)',
+                  position: 'relative'
+                }}>
+                  <span style={{
+                    fontSize: '1.5rem',
+                    fontWeight: '700',
+                    color: '#8b5cf6'
+                  }}>2</span>
+                </div>
+                <h3 style={{
+                  fontSize: '1.5rem',
+                  marginBottom: '1rem',
+                  color: 'var(--text-primary)',
+                  fontWeight: '600'
+                }}>
+                  Create Stream
+                </h3>
+                <p style={{
+                  color: 'var(--text-secondary)',
+                  fontSize: '1rem',
+                  lineHeight: '1.6',
+                  margin: 0
+                }}>
+                  Set up your payment stream with customizable rates, duration, and multiple recipients.
+                </p>
+              </div>
+
+              {/* Step 3 */}
+              <div style={{
+                background: 'linear-gradient(135deg, rgba(21, 27, 51, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                padding: '3rem 2rem',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                boxShadow: '0 4px 24px rgba(0, 0, 0, 0.2)',
+                position: 'relative',
+                textAlign: 'center'
+              }}>
+                <div style={{
+                  width: '64px',
+                  height: '64px',
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 2rem',
+                  border: '2px solid rgba(16, 185, 129, 0.3)',
+                  position: 'relative'
+                }}>
+                  <span style={{
+                    fontSize: '1.5rem',
+                    fontWeight: '700',
+                    color: '#10b981'
+                  }}>3</span>
+                </div>
+                <h3 style={{
+                  fontSize: '1.5rem',
+                  marginBottom: '1rem',
+                  color: 'var(--text-primary)',
+                  fontWeight: '600'
+                }}>
+                  Fund & Automate
+                </h3>
+                <p style={{
+                  color: 'var(--text-secondary)',
+                  fontSize: '1rem',
+                  lineHeight: '1.6',
+                  margin: 0
+                }}>
+                  Fund your stream and let automated payments flow continuously to all recipients.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Stats Section */}
+        <div style={{
+          padding: '4rem 2rem',
+          background: 'rgba(10, 14, 39, 0.5)'
+        }}>
+          <div style={{
+            maxWidth: '1200px',
+            margin: '0 auto',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '3rem',
+            textAlign: 'center'
+          }}>
+            <div>
+              <div style={{
+                fontSize: '3rem',
+                fontWeight: '700',
+                background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                marginBottom: '0.5rem'
+              }}>
+                $2.5M+
+              </div>
+              <div style={{
+                color: 'var(--text-secondary)',
+                fontSize: '1rem',
+                fontWeight: '500'
+              }}>
+                Total Value Streamed
+              </div>
+            </div>
+            <div>
+              <div style={{
+                fontSize: '3rem',
+                fontWeight: '700',
+                background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                marginBottom: '0.5rem'
+              }}>
+                10K+
+              </div>
+              <div style={{
+                color: 'var(--text-secondary)',
+                fontSize: '1rem',
+                fontWeight: '500'
+              }}>
+                Active Streams
+              </div>
+            </div>
+            <div>
+              <div style={{
+                fontSize: '3rem',
+                fontWeight: '700',
+                background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                marginBottom: '0.5rem'
+              }}>
+                500+
+              </div>
+              <div style={{
+                color: 'var(--text-secondary)',
+                fontSize: '1rem',
+                fontWeight: '500'
+              }}>
+                Organizations
+              </div>
+            </div>
+            <div>
+              <div style={{
+                fontSize: '3rem',
+                fontWeight: '700',
+                background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                marginBottom: '0.5rem'
+              }}>
+                99.9%
+              </div>
+              <div style={{
+                color: 'var(--text-secondary)',
+                fontSize: '1rem',
+                fontWeight: '500'
+              }}>
+                Uptime
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Call to Action Section */}
+        <div style={{
+          padding: '6rem 2rem',
+          background: 'linear-gradient(135deg, rgba(21, 27, 51, 0.9) 0%, rgba(30, 41, 59, 0.9) 100%)',
+          textAlign: 'center'
+        }}>
+          <div style={{
+            maxWidth: '800px',
+            margin: '0 auto'
+          }}>
+            <h2 style={{
+              fontSize: '3rem',
+              marginBottom: '1.5rem',
+              background: 'linear-gradient(135deg, #ffffff 0%, #a8b3d0 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              fontWeight: '700',
+              letterSpacing: '-0.02em'
+            }}>
+              Ready to Stream Payments?
+            </h2>
+            <p style={{
+              color: 'var(--text-secondary)',
+              fontSize: '1.25rem',
+              marginBottom: '3rem',
+              lineHeight: '1.6'
+            }}>
+              Join thousands of users who trust StreamFi for their automated payment needs. Start streaming today.
+            </p>
+            <button 
+              onClick={connectWallet} 
+              style={{
+                padding: '1.25rem 3rem',
+                fontSize: '1.125rem',
+                fontWeight: '600',
+                background: 'linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%)',
+                color: 'white',
+                border: 'none',
+                borderRadius: 'var(--radius-lg)',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 8px 32px rgba(99, 102, 241, 0.4)',
+                fontFamily: 'var(--font-sans)',
+                marginBottom: '2rem'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.transform = 'translateY(-3px)';
+                e.target.style.boxShadow = '0 12px 40px rgba(99, 102, 241, 0.5)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = '0 8px 32px rgba(99, 102, 241, 0.4)';
+              }}
+            >
+              Get Started Now
+            </button>
+            <p style={{
+              color: 'var(--text-muted)',
+              fontSize: '0.9rem',
+              margin: 0
+            }}>
+              No setup fees • Instant deployment • Smart contract security
+            </p>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <footer style={{
+          padding: '4rem 2rem 2rem',
+          background: 'rgba(10, 14, 39, 0.95)',
+          borderTop: '1px solid rgba(255, 255, 255, 0.1)'
+        }}>
+          <div style={{
+            maxWidth: '1200px',
+            margin: '0 auto',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: '3rem',
+            marginBottom: '3rem'
+          }}>
+            {/* Company Info */}
+            <div>
+              <h3 style={{
+                fontSize: '1.5rem',
+                marginBottom: '1rem',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}>
+                StreamFi
+              </h3>
+              <p style={{
+                color: 'var(--text-secondary)',
+                fontSize: '0.95rem',
+                lineHeight: '1.6',
+                marginBottom: '1.5rem'
+              }}>
+                Decentralized payment streaming for the modern economy. Automate salaries, subscriptions, and recurring payments with blockchain security.
+              </p>
+              <div style={{
+                display: 'flex',
+                gap: '1rem'
+              }}>
+                <a
+                  href="https://twitter.com/streamfi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '10px',
+                    background: 'rgba(21, 27, 51, 0.6)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    color: 'var(--text-secondary)',
+                    transition: 'all 0.3s ease',
+                    textDecoration: 'none'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(29, 161, 242, 0.2)';
+                    e.currentTarget.style.borderColor = 'rgba(29, 161, 242, 0.5)';
+                    e.currentTarget.style.color = '#1da1f2';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(21, 27, 51, 0.6)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                    e.currentTarget.style.color = 'var(--text-secondary)';
+                  }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                </a>
+                <a
+                  href="https://t.me/streamfi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '10px',
+                    background: 'rgba(21, 27, 51, 0.6)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    color: 'var(--text-secondary)',
+                    transition: 'all 0.3s ease',
+                    textDecoration: 'none'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(37, 150, 190, 0.2)';
+                    e.currentTarget.style.borderColor = 'rgba(37, 150, 190, 0.5)';
+                    e.currentTarget.style.color = '#2596be';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(21, 27, 51, 0.6)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                    e.currentTarget.style.color = 'var(--text-secondary)';
+                  }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.166 1.816-1.03 6.509-1.455 8.627-.172.907-.512 1.209-.84 1.24-.712.062-1.25-.469-1.938-.919-1.078-.703-1.687-1.14-2.732-1.826-1.21-.78-.426-1.21.264-1.91.181-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.062 3.345-.479.329-.913.489-1.302.481-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.559.1.014.321.06.465.277.12.18.155.413.108.644z"/>
+                  </svg>
+                </a>
+                <a
+                  href="https://discord.gg/streamfi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '10px',
+                    background: 'rgba(21, 27, 51, 0.6)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    color: 'var(--text-secondary)',
+                    transition: 'all 0.3s ease',
+                    textDecoration: 'none'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(88, 101, 242, 0.2)';
+                    e.currentTarget.style.borderColor = 'rgba(88, 101, 242, 0.5)';
+                    e.currentTarget.style.color = '#5865f2';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(21, 27, 51, 0.6)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                    e.currentTarget.style.color = 'var(--text-secondary)';
+                  }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 style={{
+                fontSize: '1.125rem',
+                marginBottom: '1rem',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}>
+                Product
+              </h4>
+              <ul style={{
+                listStyle: 'none',
+                padding: 0,
+                margin: 0
+              }}>
+                <li style={{ marginBottom: '0.75rem' }}>
+                  <a href="#features" style={{
+                    color: 'var(--text-secondary)',
+                    textDecoration: 'none',
+                    fontSize: '0.95rem',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'var(--text-primary)'}
+                  onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}
+                  >Features</a>
+                </li>
+                <li style={{ marginBottom: '0.75rem' }}>
+                  <a href="#how-it-works" style={{
+                    color: 'var(--text-secondary)',
+                    textDecoration: 'none',
+                    fontSize: '0.95rem',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'var(--text-primary)'}
+                  onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}
+                  >How It Works</a>
+                </li>
+                <li style={{ marginBottom: '0.75rem' }}>
+                  <a href="https://docs.streamfi.com" target="_blank" rel="noopener noreferrer" style={{
+                    color: 'var(--text-secondary)',
+                    textDecoration: 'none',
+                    fontSize: '0.95rem',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'var(--text-primary)'}
+                  onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}
+                  >Documentation</a>
+                </li>
+                <li style={{ marginBottom: '0.75rem' }}>
+                  <a href="#analytics" style={{
+                    color: 'var(--text-secondary)',
+                    textDecoration: 'none',
+                    fontSize: '0.95rem',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'var(--text-primary)'}
+                  onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}
+                  >Analytics</a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Resources */}
+            <div>
+              <h4 style={{
+                fontSize: '1.125rem',
+                marginBottom: '1rem',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}>
+                Resources
+              </h4>
+              <ul style={{
+                listStyle: 'none',
+                padding: 0,
+                margin: 0
+              }}>
+                <li style={{ marginBottom: '0.75rem' }}>
+                  <a href="https://blog.streamfi.com" target="_blank" rel="noopener noreferrer" style={{
+                    color: 'var(--text-secondary)',
+                    textDecoration: 'none',
+                    fontSize: '0.95rem',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'var(--text-primary)'}
+                  onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}
+                  >Blog</a>
+                </li>
+                <li style={{ marginBottom: '0.75rem' }}>
+                  <a href="https://docs.streamfi.com/api" target="_blank" rel="noopener noreferrer" style={{
+                    color: 'var(--text-secondary)',
+                    textDecoration: 'none',
+                    fontSize: '0.95rem',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'var(--text-primary)'}
+                  onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}
+                  >API Reference</a>
+                </li>
+                <li style={{ marginBottom: '0.75rem' }}>
+                  <a href="https://status.streamfi.com" target="_blank" rel="noopener noreferrer" style={{
+                    color: 'var(--text-secondary)',
+                    textDecoration: 'none',
+                    fontSize: '0.95rem',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'var(--text-primary)'}
+                  onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}
+                  >Status</a>
+                </li>
+                <li style={{ marginBottom: '0.75rem' }}>
+                  <a href="https://support.streamfi.com" target="_blank" rel="noopener noreferrer" style={{
+                    color: 'var(--text-secondary)',
+                    textDecoration: 'none',
+                    fontSize: '0.95rem',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'var(--text-primary)'}
+                  onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}
+                  >Support</a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Newsletter */}
+            <div>
+              <h4 style={{
+                fontSize: '1.125rem',
+                marginBottom: '1rem',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}>
+                Stay Updated
+              </h4>
+              <p style={{
+                color: 'var(--text-secondary)',
+                fontSize: '0.95rem',
+                lineHeight: '1.6',
+                marginBottom: '1rem'
+              }}>
+                Get the latest updates on StreamFi features and announcements.
+              </p>
+              <div style={{
+                display: 'flex',
+                gap: '0.5rem'
+              }}>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  style={{
+                    flex: 1,
+                    padding: '0.75rem',
+                    background: 'rgba(21, 27, 51, 0.6)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '8px',
+                    color: 'var(--text-primary)',
+                    fontSize: '0.9rem',
+                    outline: 'none'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = 'var(--primary)'}
+                  onBlur={(e) => e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)'}
+                />
+                <button style={{
+                  padding: '0.75rem 1.5rem',
+                  background: 'var(--primary)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontSize: '0.9rem',
+                  fontWeight: '500',
+                  transition: 'background 0.3s ease'
+                }}
+                onMouseEnter={(e) => e.target.style.background = 'var(--primary-hover)'}
+                onMouseLeave={(e) => e.target.style.background = 'var(--primary)'}
+                >
+                  Subscribe
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div style={{
+            borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+            paddingTop: '2rem',
+            textAlign: 'center'
+          }}>
+            <p style={{
+              color: 'var(--text-muted)',
+              fontSize: '0.9rem',
+              margin: 0
+            }}>
+              © 2024 StreamFi. All rights reserved. | <a href="/privacy" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Privacy Policy</a> | <a href="/terms" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Terms of Service</a>
+            </p>
+          </div>
+        </footer>
+
         {/* Footer Navbar - Only visible after scrolling */}
         {showFooter && (
           <div style={{
@@ -1980,48 +2698,125 @@ function StreamFiDapp({ defaultTab = 'create' }) {
   return (
     <div className="payment-dapp">
       {/* Unified Header with Navigation */}
-      <div className="header-nav">
-        <div className="header-unified">
+      <div style={{
+        background: '#0f172a',
+        borderBottom: '1px solid #1e293b',
+        padding: '1rem 2rem',
+        position: 'sticky',
+        top: 0,
+        zIndex: 100
+      }}>
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          maxWidth: '1400px',
+          margin: '0 auto'
+        }}>
           {/* Logo - Left */}
-          <div className="logo-section">
-            <h1>StreamFi</h1>
+          <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#6366f1' }}>
+            StreamFi
           </div>
           
           {/* Navigation - Center */}
           {isConnected && (
-            <nav className="main-nav">
+            <nav style={{
+              display: 'flex',
+              gap: '2rem',
+              alignItems: 'center'
+            }}>
               <button
-                className={`nav-item ${activeTab === 'create' ? 'active' : ''}`}
+                style={{
+                  padding: '0.5rem 1rem',
+                  background: activeTab === 'create' ? '#6366f1' : 'transparent',
+                  color: activeTab === 'create' ? 'white' : '#a8b3d0',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  fontWeight: '500',
+                  transition: 'all 0.2s'
+                }}
                 onClick={() => handleTabChange('create')}
               >
                 Create Stream
               </button>
               <button
-                className={`nav-item ${activeTab === 'my-streams' ? 'active' : ''}`}
+                style={{
+                  padding: '0.5rem 1rem',
+                  background: activeTab === 'my-streams' ? '#6366f1' : 'transparent',
+                  color: activeTab === 'my-streams' ? 'white' : '#a8b3d0',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  fontWeight: '500',
+                  transition: 'all 0.2s'
+                }}
                 onClick={() => handleTabChange('my-streams')}
               >
                 My Streams
               </button>
               <button
-                className={`nav-item ${activeTab === 'claim' ? 'active' : ''}`}
+                style={{
+                  padding: '0.5rem 1rem',
+                  background: activeTab === 'claim' ? '#6366f1' : 'transparent',
+                  color: activeTab === 'claim' ? 'white' : '#a8b3d0',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  fontWeight: '500',
+                  transition: 'all 0.2s'
+                }}
                 onClick={() => handleTabChange('claim')}
               >
-                Claim Rewards
+                Claim
               </button>
               <button
-                className={`nav-item ${activeTab === 'analytics' ? 'active' : ''}`}
+                style={{
+                  padding: '0.5rem 1rem',
+                  background: activeTab === 'analytics' ? '#6366f1' : 'transparent',
+                  color: activeTab === 'analytics' ? 'white' : '#a8b3d0',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  fontWeight: '500',
+                  transition: 'all 0.2s'
+                }}
                 onClick={() => handleTabChange('analytics')}
               >
                 Analytics
               </button>
               <button
-                className={`nav-item ${activeTab === 'buy-sell' ? 'active' : ''}`}
+                style={{
+                  padding: '0.5rem 1rem',
+                  background: activeTab === 'buy-sell' ? '#6366f1' : 'transparent',
+                  color: activeTab === 'buy-sell' ? 'white' : '#a8b3d0',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  fontWeight: '500',
+                  transition: 'all 0.2s'
+                }}
                 onClick={() => handleTabChange('buy-sell')}
               >
                 Buy/Sell
               </button>
               <button
-                className={`nav-item ${activeTab === 'admin' ? 'active' : ''}`}
+                style={{
+                  padding: '0.5rem 1rem',
+                  background: activeTab === 'admin' ? '#6366f1' : 'transparent',
+                  color: activeTab === 'admin' ? 'white' : '#a8b3d0',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  fontWeight: '500',
+                  transition: 'all 0.2s'
+                }}
                 onClick={() => handleTabChange('admin')}
               >
                 Admin
@@ -2031,34 +2826,32 @@ function StreamFiDapp({ defaultTab = 'create' }) {
           
           {/* Wallet Info - Right */}
           {isConnected && (
-            <div className="wallet-connection">
-              <div className="wallet-display">
-                <span className="wallet-address">{account?.slice(0, 6)}...{account?.slice(-4)}</span>
-                <span className="wallet-balance">{parseFloat(balance || 0).toFixed(4)} MNEE</span>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1rem'
+            }}>
+              <div style={{
+                background: '#1e293b',
+                padding: '0.5rem 1rem',
+                borderRadius: '6px',
+                fontSize: '0.8rem',
+                color: '#a8b3d0'
+              }}>
+                <div>{account?.slice(0, 6)}...{account?.slice(-4)}</div>
+                <div>{parseFloat(balance || 0).toFixed(4)} MNEE</div>
               </div>
               <button
                 onClick={disconnectWallet}
-                className="disconnect-btn"
                 style={{
-                  padding: '0.75rem 1.25rem',
-                  fontSize: '0.9rem',
-                  fontWeight: '500',
-                  background: 'rgba(239, 68, 68, 0.1)',
-                  color: '#ef4444',
-                  border: '1px solid rgba(239, 68, 68, 0.3)',
-                  borderRadius: 'var(--radius-md)',
+                  padding: '0.5rem 1rem',
+                  background: '#dc2626',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '6px',
                   cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  fontFamily: 'var(--font-sans)',
-                  marginLeft: '0.75rem'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.background = 'rgba(239, 68, 68, 0.2)';
-                  e.target.style.borderColor = 'rgba(239, 68, 68, 0.5)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.background = 'rgba(239, 68, 68, 0.1)';
-                  e.target.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+                  fontSize: '0.9rem',
+                  fontWeight: '500'
                 }}
               >
                 Disconnect
@@ -2080,12 +2873,16 @@ function StreamFiDapp({ defaultTab = 'create' }) {
         </div>
       )}
 
-      <div className="content">
+      <div style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '2rem'
+      }}>
         {activeTab === 'create' && (
-          <div className="create-stream">
-            <div className="section-header">
-              <h2 style={{ background: 'linear-gradient(135deg, #ffffff 0%, #a8b3d0 50%, #6366f1 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Create New Stream</h2>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginTop: '0.5rem' }}>Set up a payment stream with customizable rates for each recipient</p>
+          <div>
+            <div style={{ marginBottom: '2rem' }}>
+              <h1 style={{ color: 'white', marginBottom: '0.5rem' }}>Create New Stream</h1>
+              <p style={{ color: '#a8b3d0' }}>Set up a payment stream with customizable rates for each recipient</p>
             </div>
             
             {/* Template Selection */}
@@ -2093,165 +2890,123 @@ function StreamFiDapp({ defaultTab = 'create' }) {
               <div style={{ 
                 marginBottom: '2rem', 
                 padding: '1.5rem', 
-                background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%)',
-                border: '1px solid var(--border)', 
-                borderRadius: 'var(--radius-lg)',
-                backdropFilter: 'blur(10px)'
+                background: '#1e293b',
+                borderRadius: '8px',
+                border: '1px solid #334155'
               }}>
-                <label style={{ 
-                  fontWeight: '600', 
+                <h3 style={{ 
                   marginBottom: '1rem', 
-                  display: 'block', 
-                  fontSize: '1.1rem', 
-                  fontFamily: 'var(--font-display)',
-                  color: 'var(--text-primary)'
-                }}>📋 Quick Templates</label>
+                  color: 'white',
+                  fontSize: '1.1rem'
+                }}>Quick Templates</h3>
                 <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
                   {templates.map(template => (
                     <button
                       key={template.id}
-                      type="button"
                       onClick={() => applyTemplate(template)}
                       style={{
                         padding: '0.75rem 1.5rem',
-                        background: selectedTemplate === template.id 
-                          ? 'linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%)' 
-                          : 'var(--bg-input)',
-                        color: selectedTemplate === template.id ? 'white' : 'var(--text-primary)',
-                        border: selectedTemplate === template.id ? 'none' : '1px solid var(--border)',
-                        borderRadius: 'var(--radius-md)',
+                        background: selectedTemplate === template.id ? '#6366f1' : '#334155',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '6px',
                         cursor: 'pointer',
-                        fontSize: '0.95rem',
-                        fontWeight: '500',
-                        transition: 'all 0.2s ease',
-                        boxShadow: selectedTemplate === template.id ? 'var(--shadow-sm)' : 'none'
-                      }}
-                      onMouseEnter={(e) => {
-                        if (selectedTemplate !== template.id) {
-                          e.target.style.borderColor = 'var(--primary)';
-                          e.target.style.background = 'var(--bg-card)';
-                        }
-                      }}
-                      onMouseLeave={(e) => {
-                        if (selectedTemplate !== template.id) {
-                          e.target.style.borderColor = 'var(--border)';
-                          e.target.style.background = 'var(--bg-input)';
-                        }
+                        fontSize: '0.9rem',
+                        fontWeight: '500'
                       }}
                     >
                       {template.name}
                     </button>
                   ))}
                 </div>
+                {selectedTemplate && (
+                  <p style={{ color: '#a8b3d0', fontSize: '0.9rem', margin: 0 }}>
+                    {templates.find(t => t.id === selectedTemplate)?.description}
+                  </p>
+                )}
                 <button
-                  type="button"
                   onClick={saveAsTemplate}
                   style={{
                     padding: '0.6rem 1.2rem',
                     background: 'transparent',
-                    border: '1px solid var(--primary)',
-                    color: 'var(--primary)',
-                    borderRadius: 'var(--radius-md)',
+                    border: '1px solid #6366f1',
+                    color: '#6366f1',
+                    borderRadius: '6px',
                     cursor: 'pointer',
                     fontSize: '0.9rem',
                     fontWeight: '500',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.background = 'var(--primary-light)';
-                    e.target.style.color = 'var(--primary)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.background = 'transparent';
-                    e.target.style.color = 'var(--primary)';
+                    marginTop: '1rem'
                   }}
                 >
-                  💾 Save Current as Template
+                  Save as Template
                 </button>
               </div>
             )}
 
-            <form onSubmit={handleCreateStream} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              <div className="form-group" style={{ 
-                background: 'rgba(21, 27, 51, 0.4)', 
-                backdropFilter: 'blur(20px) saturate(180%)',
-                WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-                padding: '1.5rem', 
-                borderRadius: 'var(--radius-lg)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
+            <form onSubmit={handleCreateStream} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+              <div style={{ 
+                background: '#1e293b',
+                padding: '1.5rem',
+                borderRadius: '8px',
+                border: '1px solid #334155'
               }}>
                 <label style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '0.5rem',
-                  marginBottom: '0.75rem',
-                  fontSize: '1.1rem',
-                  fontWeight: '600',
-                  color: 'var(--text-primary)'
+                  color: 'white',
+                  marginBottom: '0.5rem',
+                  display: 'block',
+                  fontSize: '0.9rem',
+                  fontWeight: '500'
                 }}>
-                  <span>💰</span>
-                  Default Hourly Rate
+                  Default Hourly Rate (MNEE)
                 </label>
                 <input
                   type="number"
                   value={hourlyRate}
                   onChange={(e) => setHourlyRate(e.target.value)}
-                  placeholder="e.g., 10 MNEE/hour"
+                  placeholder="10"
                   step="0.01"
                   min="0"
-                  style={{ fontSize: '1.1rem' }}
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    background: '#334155',
+                    border: '1px solid #475569',
+                    borderRadius: '6px',
+                    color: 'white',
+                    fontSize: '1rem'
+                  }}
                 />
-                <small style={{ 
-                  color: 'var(--text-muted)', 
-                  fontSize: '0.85rem', 
-                  display: 'block', 
-                  marginTop: '0.5rem',
-                  fontStyle: 'italic'
-                }}>
-                  Optional: Leave empty to set individual rates per recipient below
-                </small>
+                <p style={{ color: '#a8b3d0', fontSize: '0.8rem', marginTop: '0.5rem' }}>
+                  Optional: Leave empty to set individual rates per recipient
+                </p>
               </div>
 
-              <div className="form-group" style={{ 
-                background: 'rgba(21, 27, 51, 0.4)', 
-                backdropFilter: 'blur(20px) saturate(180%)',
-                WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-                padding: '1.5rem', 
-                borderRadius: 'var(--radius-lg)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
+              <div style={{ 
+                background: '#1e293b',
+                padding: '1.5rem',
+                borderRadius: '8px',
+                border: '1px solid #334155'
               }}>
-                <label style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '0.5rem',
-                  marginBottom: '0.75rem',
-                  fontSize: '1.1rem',
-                  fontWeight: '600',
-                  color: 'var(--text-primary)'
-                }}>
-                  <span>⏱️</span>
-                  Stream Duration
-                </label>
+                <h3 style={{ color: 'white', marginBottom: '1rem' }}>Duration</h3>
                 <select
                   value={durationType}
                   onChange={(e) => handleDurationTypeChange(e.target.value)}
-                  style={{ 
-                    marginBottom: '0.75rem', 
-                    padding: '1rem 1.25rem', 
-                    fontSize: '1.1rem',
-                    background: 'var(--bg-input)',
-                    border: '2px solid var(--border)',
-                    borderRadius: 'var(--radius-md)',
-                    color: 'var(--text-primary)'
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    background: '#334155',
+                    border: '1px solid #475569',
+                    borderRadius: '6px',
+                    color: 'white',
+                    fontSize: '1rem',
+                    marginBottom: '1rem'
                   }}
                 >
                   <option value="custom">Custom (hours)</option>
-                  <option value="week">1 Week (168 hours)</option>
-                  <option value="month">1 Month (720 hours)</option>
-                  <option value="quarter">1 Quarter (2,160 hours)</option>
-                  <option value="year">1 Year (8,760 hours)</option>
+                  <option value="week">1 Week</option>
+                  <option value="month">1 Month</option>
+                  <option value="quarter">1 Quarter</option>
+                  <option value="year">1 Year</option>
                 </select>
                 {durationType === 'custom' ? (
                   <input
@@ -2261,69 +3016,53 @@ function StreamFiDapp({ defaultTab = 'create' }) {
                     placeholder="24"
                     min="1"
                     required
-                    style={{ 
-                      width: '100%', 
-                      padding: '1rem 1.25rem',
-                      fontSize: '1.1rem'
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem',
+                      background: '#334155',
+                      border: '1px solid #475569',
+                      borderRadius: '6px',
+                      color: 'white',
+                      fontSize: '1rem'
                     }}
                   />
                 ) : (
-                  <input
-                    type="text"
-                    value={`${duration} hours (${(parseFloat(duration) / 24).toFixed(1)} days)`}
-                    disabled
-                    style={{ 
-                      width: '100%', 
-                      padding: '1rem 1.25rem',
-                      fontSize: '1.1rem',
-                      background: 'var(--bg-input)', 
-                      border: '2px solid var(--border)', 
-                      cursor: 'not-allowed', 
-                      color: 'var(--text-muted)',
-                      borderRadius: 'var(--radius-md)'
-                    }}
-                  />
+                  <div style={{
+                    padding: '0.75rem',
+                    background: '#334155',
+                    border: '1px solid #475569',
+                    borderRadius: '6px',
+                    color: '#a8b3d0',
+                    fontSize: '1rem'
+                  }}>
+                    {duration} hours ({(parseFloat(duration) / 24).toFixed(1)} days)
+                  </div>
                 )}
               </div>
 
-              <div className="form-group" style={{ 
-                background: 'rgba(21, 27, 51, 0.4)', 
-                backdropFilter: 'blur(20px) saturate(180%)',
-                WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-                padding: '1.5rem', 
-                borderRadius: 'var(--radius-lg)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
+              <div style={{ 
+                background: '#1e293b',
+                padding: '1.5rem',
+                borderRadius: '8px',
+                border: '1px solid #334155',
+                gridColumn: '1 / -1'
               }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                  <label style={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: '0.5rem',
-                    fontSize: '1.1rem',
-                    fontWeight: '600',
-                    color: 'var(--text-primary)',
-                    margin: 0
-                  }}>
-                    <span>👥</span>
-                    Recipients
-                  </label>
+                  <h3 style={{ color: 'white', margin: 0 }}>Recipients</h3>
                   <button
                     type="button"
                     onClick={() => setShowAddressBook(!showAddressBook)}
                     style={{
-                      padding: '0.6rem 1.2rem',
-                      background: showAddressBook ? 'var(--primary)' : 'var(--bg-input)',
-                      color: showAddressBook ? 'white' : 'var(--text-primary)',
-                      border: `1px solid ${showAddressBook ? 'var(--primary)' : 'var(--border)'}`,
-                      borderRadius: 'var(--radius-md)',
+                      padding: '0.5rem 1rem',
+                      background: showAddressBook ? '#6366f1' : '#334155',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '6px',
                       cursor: 'pointer',
-                      fontSize: '0.9rem',
-                      fontWeight: '500',
-                      transition: 'all 0.2s ease'
+                      fontSize: '0.9rem'
                     }}
                   >
-                    {showAddressBook ? '📖 Hide' : '📖 Show'} Address Book
+                    {showAddressBook ? 'Hide' : 'Show'} Address Book
                   </button>
                 </div>
 
